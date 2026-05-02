@@ -14,6 +14,14 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connecté avec succès'))
   .catch(err => console.error('Erreur de connexion MongoDB :', err))
 
+// Import des routes
+const projectRoutes = require('./routes/projects')
+const contactRoutes = require('./routes/contact')
+
+// Utilisation des routes
+app.use('/api/projects', projectRoutes)
+app.use('/api/contact', contactRoutes)
+
 // Route de test
 app.get('/', (req, res) => {
   res.json({ message: 'Serveur Express en marche !' })
